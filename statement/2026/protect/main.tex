@@ -1,0 +1,67 @@
+\def\probtitle{보안}
+\def\probno{G} % 문제 번호
+
+\begin{problem}{\probtitle}{표준 입력(stdin)}{표준 출력(stdout)}{1 초}{1024 megabytes}
+
+SCCC 회장 문성이는 이번 SCON 대회의 서버 운영을 맡고 있다.
+
+대회가 시작되면 서버에는 시간순으로 $N$개의 요청이 들어오고, 이를 앞에서부터 순서대로 처리해야 한다.
+$i$번째 요청에는 안정도 $A_i$가 주어진다.
+
+문성이는 이번 대회에서 사용할 하나의 정수 신뢰도 $T$를 정하려고 한다.
+기준값이 정해지면 각 요청은 다음과 같이 분류된다.
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item $A_i \ge T$이면 해당 요청은 \textbf{정상 요청}이다.
+    \item $A_i < T$이면 해당 요청은 \textbf{위험 요청}이다.
+\end{itemize}
+
+서버에는 운영 여유도 \texttt{credit}이 있으며, 초기값은 $0$이다.
+요청을 하나 처리할 때마다 \texttt{credit}은 다음과 같이 변한다.
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 요청이 정상 요청이면 \texttt{credit}이 $1$ 증가한다.
+    \item 요청이 위험 요청이면 \texttt{credit}이 $1$ 감소한다.
+\end{itemize}
+
+처리 도중 어느 순간이라도 \texttt{credit}이 음수가 되면 서버는 버티지 못하고 즉시 다운된다.
+
+문성이는 서버를 안정적으로 운영하기 위해 $B$ 만큼의 예산을 사용할 수 있다.
+위험 요청을 처리하는 순간에 긴급 패치를 적용하면, 해당 요청을 정상 요청으로 바꿀 수 있다.
+만약 $i$번째 요청이 위험 요청이었다면, 이 요청을 패치하는 데 필요한 비용은 $T - A_i$이다.
+
+패치 비용의 총합은 $B$를 초과할 수 없다.
+
+문성이가 SCON 서버를 끝까지 한 번도 다운시키지 않도록 할 수 있는 최대의 정수 신뢰도 $T$를 구하여라.
+
+\InputFile
+
+첫째 줄에 요청의 개수 $N$과 사용할 수 있는 총 예산 $B$가 공백으로 구분되어 주어진다.
+
+둘째 줄에 $N$개의 정수 $A_1, A_2, \cdots, A_N$이 공백으로 구분되어 주어진다.
+
+\OutputFile
+
+조건을 만족하도록 선택할 수 있는 최대의 정수 신뢰도 $T$를 출력한다.
+
+\newpage
+
+\Constraints
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 주어지는 모든 수는 정수이다.
+    \item $1 \le N \le 200\,000$
+    \item $0 \le B \le 10^9$
+    \item $1 \le i \le N $ 인 모든 $i$에 대해 $1 \le A_i \le 10^9$ 이다.
+\end{itemize}
+
+\Example
+
+\begin{example}
+    \exmpfile{./example/01.in.txt}{./example/01.out.txt}%
+\end{example}
+
+\Notes
+신뢰도가 $5$일때 $1, 5$번째 요청을 $(5-2) + (5-4) = 4$ 의 비용으로 긴급 패치하면 \texttt{credit}의 값은 순서대로 $1, 2, 1, 0, 1, 0$이 되어 서버를 끝까지 다운시키지 않을 수 있고, 설정 할 수 있는 최대 신뢰도이다. 
+
+\end{problem}

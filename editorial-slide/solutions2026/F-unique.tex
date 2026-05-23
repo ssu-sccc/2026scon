@@ -1,0 +1,71 @@
+\def\probno{F}
+\def\probtitle{덜 개성있는 구간}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{constructive}\\
+        출제진 의도 -- \textbf{\color{acsilver}Medium}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{세얼간이}, 30분
+        \item 문제 아이디어: 최도현
+        \item 문제 작업: 최도현
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 길이가 $N-1$일 때 조건을 만족하는 수열이 있다면, 이 수열의 왼쪽 끝이나 오른쪽 끝에 원소를 추가하여 길이가 $N$인 조건을 만족하는 수열을 만들 수 있다고 가정해봅시다.
+        \item 원소를 수열 중간에 삽입하면 기존에 만들어지던 연속 구간의 합이 크게 달라지지만, 양 끝에 배치하면 기존 연속 구간의 합들을 그대로 유지시킬 수 있기 때문입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $N=2$인 경우를 살펴봅시다.
+        \item 수열의 원소가 $A_1, A_2$일 때, 나올 수 있는 연속 구간의 합은 $A_1, A_2, A_1+A_2$가 있습니다.
+        \item 조건에 의해 $A_1 \neq A_2$이므로 이미 서로 다른 값 2개를 찾았습니다.
+        \item 따라서 $A_1+A_2$는 $A_1$이거나 $A_2$가 되어야 하고, 이는 $A_1, A_2$ 중 하나가 $0$이 되어야 한다는 뜻입니다.
+        \item 임의의 0이 아닌 정수 $k$에 대해, 수열을 $[0, k]$라고 합시다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $N=3$인 경우를 살펴봅시다.
+        \item 새롭게 추가할 수열의 원소를 $x$라고 합시다.
+        \item 수열 $[0, k]$의 끝에 $x$를 배치하면, 새롭게 나올 수 있는 연속 구간의 합으로는 $x$와 $k+x$가 있습니다.
+        \item $x$는 기존 원소와 달라야 하므로 ($x \neq 0, x \neq k$), $k+x$가 원소 중 하나와 같아야 합니다.
+        \begin{itemize}
+            \item $k+x = 0 \implies x=-k$ (가능)
+            \item $k+x = k \implies x=0$ (불가능)
+            \item $k+x = x \implies k=0$ (불가능)
+        \end{itemize}
+        \item 즉, $x=-k$가 되고 가능한 배치는 $[0, k, -k]$ (또는 $[-k, 0, k]$) 등이 됩니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $N=4$인 경우를 살펴봅시다.
+        \item 새롭게 추가할 수열의 원소를 $y$라고 합시다.
+        \item 수열 $[0, k, -k]$의 오른쪽 끝에 $y$를 배치하면, 새롭게 나올 수 있는 연속 구간의 합으로는 $y$와 $-k+y$가 있습니다.
+        \item 마찬가지로 $y$는 기존 원소와 달라야 하므로, $-k+y$가 원소 중 하나와 같아야 합니다.
+        \begin{itemize}
+            \item $-k+y = 0 \implies y=k$ (불가능)
+            \item $-k+y = k \implies y=2k$ (가능)
+            \item $-k+y = -k \implies y=0$ (불가능)
+            \item $-k+y = y \implies k=0$ (불가능)
+        \end{itemize}
+        \item 즉, $y=2k$가 되어 수열은 $[0, k, -k, 2k]$가 됩니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 이러한 규칙을 계속해서 적용하면 $0, k, -k, 2k, -2k, 3k, \dots$ 등의 형태로 수열을 구성할 수 있음을 추론할 수 있으며, 실제로 조건을 만족하는 수열이 됩니다.
+    \end{itemize}
+\end{frame}

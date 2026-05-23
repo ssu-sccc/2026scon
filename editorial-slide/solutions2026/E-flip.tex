@@ -1,0 +1,55 @@
+\def\probno{E}
+\def\probtitle{구간 뒤집기}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{greedy, string}\\
+        출제진 의도 -- \textbf{\color{acsilver}Medium}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{동의를 거부할 경우 2026 SCON 참여가 불가합니다}, 23분
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 최종 문자열은 반드시 두 가지 중 하나입니다.
+        \[
+            \texttt{010101}\cdots \quad \text{or} \quad \texttt{101010}\cdots
+        \]
+        \item 하나의 목표 문자열을 정하면, 바뀌어야 하는 위치들이 결정됩니다.
+        \item 한 번의 연산은 연속한 구간 전체를 뒤집습니다.
+        \item 따라서 필요한 연산 수는 바뀌어야 하는 위치들의 연속 컴포넌트 개수입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 두 목표 문자열에 대해 각각 필요한 연산 수를 계산합니다.
+        \item 정답은 두 값 중 작은 값입니다.
+        \item 각 위치를 한 번씩 보면서 컴포넌트 시작점을 세면 됩니다.
+        \item 시간복잡도는 $O(N)$입니다.
+    \end{itemize}
+\end{frame}
+
+ \begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 문제가 되는 위치는 $A_i = A_{i+1}$인 곳입니다.
+        \item 이를 집합으로 정의하면
+        \[
+            S = \{\, i \mid A_i = A_{i+1} \,\}
+        \]
+        입니다.
+        \item 한 번의 연산은 이 집합의 원소를 최대 $2$개까지 제거할 수 있습니다.
+        \item 따라서 필요한 최소 연산 횟수는
+        \[
+            \left\lceil \frac{|S|}{2} \right\rceil
+        \]
+        입니다.
+    \end{itemize}
+\end{frame}

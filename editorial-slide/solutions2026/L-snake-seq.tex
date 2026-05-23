@@ -1,0 +1,47 @@
+\def\probno{L}
+\def\probtitle{뱀 수열}
+\section{\probno{}. \probtitle{}}
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{dp, geometry, sweep}\\
+        출제진 의도 -- \textbf{\color{acplatinum} Challenging}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{N/A}, N/A분
+        \item 문제 아이디어: 양성준
+        \item 문제 작업: 양성준
+    \end{itemize}
+\end{frame}
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 단순히 가장 긴 path만 구하라면 LIS DP로 충분하지만, 뱀 수열은 직전 edge의 기울기까지 비교해야 합니다.
+        \item 사과의 인덱스를 $i, j, k$라 두고, 아래와 같이 dp 식을 정의할 수 있습니다.
+        \[
+            \mathrm{dp}[i][j] = \text{마지막 edge가 } i \to j \text{ 인 path의 최대 길이}
+        \]
+        \item 같은 $(i, j)$여도 직전이 올라온 모양인지 내려온 모양인지에 따라 다음에 올 기울기 조건이 정반대입니다.
+        \item 방향을 한 차원 추가해 $\mathrm{dp}[i][j][0/1]$로 분리합니다.
+    \end{itemize}
+\end{frame}
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 부분 순서 $\prec$를 $a \prec b \iff x_a < x_b \land y_a < y_b$로 정의합니다.
+        \item $j$를 고정하고 생각해봅시다. 이미 정의된 $i \prec j$ 쌍의 dp 값으로 $j \prec k$인 $k$의 상태를 업데이트하는 구조입니다.
+        \item 정의대로 전이를 짜면 각 $(j, k)$마다 모든 $i$를 훑어야 하므로 $O(N^3)$입니다.
+    \end{itemize}
+\end{frame}
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $i, k$ 후보를 ``$j$와의 기울기''로 정렬하면, 각 $k$의 dp 갱신이 prefix/suffix 구간의 $\max$로 정의됩니다.
+        \[
+            \mathrm{dp}[j][k][0] = \max_{\mathrm{slope}(i, j) \,>\, \mathrm{slope}(j, k)} \mathrm{dp}[i][j][1] + 1
+        \]
+        \[
+            \mathrm{dp}[j][k][1] = \max_{\mathrm{slope}(i, j) \,<\, \mathrm{slope}(j, k)} \mathrm{dp}[i][j][0] + 1
+        \]
+        \item 정렬된 순서로 스위핑하면 $\mathrm{dp}[j][k][t]$를 $O(1)$에 갱신할 수 있습니다.
+        \item 한 $j$당 정렬 $O(N \log N)$ + 스윕 $O(N)$, 전체 \textbf{$O(N^2 \log N)$}으로 시간 안에 통과합니다.
+        \item 별해: $j$별 envelope 위 점 개수를 $h$라 할 때, 완전탐색 $O(h \cdot N^2)$ / 이분탐색 $O(N^2 \log h)$ / SIMD $O(N^3 / 16)$ 등도 통과합니다.
+    \end{itemize}
+\end{frame}

@@ -1,0 +1,183 @@
+\def\probno{H}
+\def\probtitle{같게 만들기}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{invariant, ad-hoc}\\
+        출제진 의도 -- \textbf{\color{acgold} Hard}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{N/A}, N/A분
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 연산은 두 인접쌍에 대해 다음 변화를 줍니다.
+        \[
+            B_i{+}{=}1,\quad B_{i+1}{-}{=}1,\quad
+            B_j{-}{=}1,\quad B_{j+1}{+}{=}1
+        \]
+        \item 전체 합 변화량은
+        \[
+            +1-1-1+1=0
+        \]
+        \item 따라서 $\sum A_i$는 항상 보존됩니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 가중합 $\sum kA_k$의 변화량을 계산합니다.
+        \[
+            i-(i+1)-j+(j+1)=0
+        \]
+        \item 따라서 $\sum iA_i$도 항상 보존됩니다.
+        \item 즉,
+        \[
+            \sum A_i,\qquad \sum iA_i
+        \]
+        두 값은 연산 과정에서 변하지 않는 불변량입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 모든 원소가 같은 값 $X$가 되었다고 합시다.
+        \item 전체 합은 보존되므로
+        \[
+            \sum A_i = NX
+        \]
+        \item 따라서 $\sum A_i$는 $N$으로 나누어떨어져야 합니다.
+        \item 또한 최종 가중합은
+        \[
+            X(1+2+\cdots+N)
+            =
+            X\cdot\frac{N(N+1)}{2}
+        \]
+        입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $X=\frac{\sum A_i}{N}$이므로 필요한 조건은
+        \[
+            \sum iA_i
+            =
+            \frac{\sum A_i}{N}\cdot\frac{N(N+1)}{2}
+        \]
+        입니다.
+        \item 따라서 다음 두 조건은 반드시 필요합니다.
+        \[
+            \sum A_i \equiv 0 \pmod N
+        \]
+        \[
+            \sum iA_i
+            =
+            \frac{\sum A_i}{N}\cdot\frac{N(N+1)}{2}
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 이제 두 조건이 충분함을 보입니다.
+        \item 목표값을
+        \[
+            X=\frac{\sum A_i}{N}
+        \]
+        라고 두고,
+        \[
+            D_i=A_i-X
+        \]
+        라고 정의합니다.
+        \item 그러면 목표는 수열 $D$를 모두 $0$으로 만드는 것입니다.
+        \item 두 조건으로부터
+        \[
+            \sum D_i=0,\qquad \sum iD_i=0
+        \]
+        입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $D_i$가 양수인 위치는 값을 줄여야 하는 곳입니다.
+        \item $D_i$가 음수인 위치는 값을 늘려야 하는 곳입니다.
+        \item 한 번의 기본 이동
+        \[
+            D_i{-}{=}1,\quad D_{i+1}{+}{=}1
+        \]
+        은 값 $1$을 오른쪽으로 한 칸 옮기는 것과 같습니다.
+        \item 이 이동은 전체 합을 보존하고, 가중합을 $1$ 증가시킵니다.
+        \item 반대 이동은 가중합을 $1$ 감소시킵니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 문제의 연산은 서로 반대 방향의 기본 이동 두 개를 묶은 것입니다.
+        \[
+            D_i{-}{=}1,\;D_{i+1}{+}{=}1
+        \]
+        \[
+            D_j{+}{=}1,\;D_{j+1}{-}{=}1
+        \]
+        \item 하나는 가중합을 $1$ 증가시키고, 다른 하나는 $1$ 감소시킵니다.
+        \item 그래서 묶으면 전체 합과 가중합이 모두 유지됩니다.
+        \item 즉, 문제의 연산은 ``가중합 변화가 상쇄되는 두 이동''입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $\sum D_i=0$이면 양수의 총량과 음수의 총량이 같습니다.
+        \item 따라서 기본 이동만 허용하면 $D$를 모두 $0$으로 만들 수 있습니다.
+        \item 이때 필요한 오른쪽 이동 횟수와 왼쪽 이동 횟수의 차이는
+        \[
+            \sum iD_i
+        \]
+        와 정확히 대응합니다.
+        \item 그런데 $\sum iD_i=0$이므로,
+        \item 오른쪽 이동과 왼쪽 이동의 개수를 서로 짝지을 수 있습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 짝지은 오른쪽 이동 하나와 왼쪽 이동 하나는 문제의 연산 한 번으로 구현됩니다.
+        \item 따라서 모든 기본 이동을 문제의 연산들로 묶을 수 있습니다.
+        \item 결국 $D$를 전부 $0$으로 만들 수 있습니다.
+        \item 즉, 두 불변량 조건은 필요할 뿐 아니라 충분합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 판별 조건은 다음 두 개입니다.
+        \[
+            \sum A_i \equiv 0 \pmod N
+        \]
+        \[
+            \sum iA_i
+            =
+            \frac{\sum A_i}{N}\cdot\frac{N(N+1)}{2}
+        \]
+        \item 쿼리 $(i,x)$가 들어오면
+        \[
+            \Delta=x-A_i
+        \]
+        만큼 두 값을 갱신합니다.
+        \[
+            \sum A_i {+}{=} \Delta,\qquad
+            \sum iA_i {+}{=} i\Delta
+        \]
+        \item 전체 시간복잡도는 $O(N+Q)$입니다.
+    \end{itemize}
+\end{frame}

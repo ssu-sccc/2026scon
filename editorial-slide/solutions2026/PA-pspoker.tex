@@ -1,0 +1,37 @@
+\def\probno{PA}
+\def\probtitle{PS 포커}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame} % No title at first slide
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{sorting}\\
+        출제진 의도 -- \textbf{\color{acbronze}Easy}
+    }
+    \begin{itemize}
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 각 사람의 값은 $C_i = \frac{B_i}{A_i}$입니다.
+        \item $\frac{B_i}{A_i}$가 가장 큰 사람을 구하면 됩니다.
+        \item 실수 비교 대신
+        \[
+            B_i A_j < B_j A_i
+        \]
+        로 비교합니다.
+        \item 같다면 번호가 큰 사람을 고릅니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $1 \sim N$을 순회하면서 가장 큰 사람을 구해줍니다.
+        \item 곱셈은 $10^{18}$까지이므로 \texttt{long long} 사용
+        \item 시간복잡도: $O(N)$
+    \end{itemize}
+\end{frame}

@@ -1,0 +1,77 @@
+\def\probtitle{PS 포커}
+\def\probno{PA} % 문제 번호
+
+\begin{problem}{\probtitle}{표준 입력(stdin)}{표준 출력(stdout)}{2 초}{1024 megabytes}
+
+숭실대학교 SCCC에는 PS(Problem Solving)로 포커를 즐기는 독특한 사람들이 있다.
+
+이들이 즐기는 PS 포커는 1주일에 한 번 열리며, 게임은 전용 화폐인 \textit{PS 코인}으로 진행된다.  
+PS 코인은 PS 문제를 풀어 얻을 수 있으며, 문제를 푼 사람의 실력과 문제의 난이도에 따라 획득량이 달라진다.
+
+총 $N$명의 사람이 있다. 각 사람 $i$에 대해 다음 두 값이 주어진다.
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 실력 $A_i$
+    \item 푼 문제의 난이도 $B_i$
+\end{itemize}
+
+사람 $i$가 해당 문제를 풀었을 때 얻는 PS 코인의 양은
+$$
+C_i = \frac{B_i}{A_i}
+$$
+에 비례한다.
+
+PS 코인을 가장 많이 얻는 사람을 구하여라.
+
+보다 정확히, $C_i$가 가장 큰 사람의 번호를 출력하여라.  
+만약 가장 큰 $C$값을 가지는 사람이 여러 명이라면, 사람 번호가 가장 큰 사람의 번호를 출력하여라.
+
+\InputFile
+
+첫째 줄에 사람의 수 $N$이 주어진다.  
+
+둘째 줄에 $N$개의 정수 $A_1, A_2, \dots, A_N$ 이 공백으로 구분되어 주어진다.
+
+셋째 줄에 $N$개의 정수 $B_1, B_2, \dots, B_N$ 이 공백으로 구분되어 주어진다.
+
+
+\OutputFile
+
+PS 코인을 가장 많이 얻는 사람의 번호를 출력하여라. PS 코인을 가장 많이 얻는 사람이 여러 명이라면, 그중 번호가 가장 큰 사람의 번호를 출력하여라.
+
+\Constraints
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 주어지는 모든  수는 정수이다. 
+    \item $1 \le N \le 200\,000$
+    \item $1 \le i \le N$인 모든 $i$ 에 대해 $1 \le A_i \le 10^9$
+    \item $1 \le i \le N$인 모든 $i$ 에 대해 $1 \le B_i \le 10^9$
+\end{itemize}
+
+\Example
+
+\begin{example}
+    \exmpfile{./example/01.in.txt}{./example/01.out.txt}%
+    \exmpfile{./example/02.in.txt}{./example/02.out.txt}%
+\end{example}
+
+\Notes
+
+두 번째 예제에서 $C_1 = \frac{10^9-1}{10^9},\ C_2 = \frac{10^9-2}{10^9-1}$ 이다. 이때 $C_1 > C_2$ 이므로 정답은 \t{1} 이다.
+
+하지만 \t{float} 나 \t{double} 과 같은 부동소수점 타입을 이용해 $C_i$를 직접 계산하면, 두 값을 정확하게 표현하지 못해 잘못된 비교 결과가 나올 수 있다.
+
+실제로:
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item \t{float} 타입에서는 $C_1$과 $C_2$가 모두 $1.0$으로 반올림되어 저장된다.
+    \item \t{double} 타입에서도 두 값이 모두
+    $\frac{9\,007\,199\,245\,733\,793}{9\,007\,199\,254\,740\,992}$
+    으로 반올림되어 저장된다.
+\end{itemize}
+
+따라서 두 값의 대소 관계를 정확하게 비교하기 위해서는 실수 계산 대신 정수 계산을 사용해야 한다. 모든 $A_i, B_i$가 양수이므로, $\frac{B_1}{A_1} < \frac{B_2}{A_2}$ 를 직접 비교하는 대신, $B_1A_2 < B_2A_1$ 를 비교해도 완전히 동일한 결과를 얻을 수 있다.
+
+한편, $A_i, B_i \le 10^9$ 이므로 곱셈 결과는 최대 약 $10^{18}$까지 커질 수 있다. 따라서 \t{int} 대신 \t{long long} 과 같이 충분히 큰 정수 타입을 사용해야 한다.
+
+
+\end{problem}

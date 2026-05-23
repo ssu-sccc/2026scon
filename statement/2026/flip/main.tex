@@ -1,0 +1,48 @@
+\def\probtitle{구간 뒤집기}
+\def\probno{E} % 문제 번호
+
+\begin{problem}{\probtitle}{표준 입력(stdin)}{표준 출력(stdout)}{1 초}{1024 megabytes}
+
+길이 $N$인 이진 문자열 $T$가 주어진다. 다음 연산을 원하는 만큼 사용할 수 있다.
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 두 정수 $l, r$ ($1 \le l \le r \le N$)를 선택한다.
+    \item 부분 문자열 $T_l T_{l+1} \cdots T_r$의 모든 문자를 뒤집는다.
+    즉, \texttt{0}은 \texttt{1}로, \texttt{1}은 \texttt{0}으로 바뀐다.
+\end{itemize}
+
+문자열 $T$를 다음 조건을 만족하도록 바꾸고자 한다.
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 모든 $1 \le i < N$에 대해 $T_i \ne T_{i+1}$
+\end{itemize}
+
+즉, 인접한 두 문자가 항상 서로 달라야 한다.
+
+조건을 만족시키기 위해 필요한 연산의 최소 횟수를 구하여라.
+
+\InputFile
+
+첫째 줄에 이진 문자열 $T$의 길이를 나타내는 정수 $N$이 주어진다.
+
+둘째 줄에 길이가 $N$인 이진 문자열 $T$가 주어진다.
+
+\OutputFile
+
+조건을 만족시키기 위해 필요한 연산의 최소 횟수를 출력한다.
+
+\Constraints
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item $1 \le N \le 200\,000$
+    \item $T$는 \texttt{0}과 \texttt{1}로만 이루어져 있다.
+\end{itemize}
+
+\Example
+
+\begin{example}
+    \exmpfile{./example/01.in.txt}{./example/01.out.txt}%
+    \exmpfile{./example/02.in.txt}{./example/02.out.txt}%
+\end{example}
+
+\end{problem}

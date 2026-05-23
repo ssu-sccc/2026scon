@@ -1,0 +1,69 @@
+\def\probtitle{Where is my ``ICP"}
+\def\probno{A} % 문제 번호
+
+\begin{problem}{\probtitle}{표준 입력(stdin)}{표준 출력(stdout)}{1 초}{1024 megabytes}
+
+\begin{center}
+    \includegraphics[width=0.3\linewidth]{image/icpc.png}
+\end{center}
+
+민성이는 2025년 ICPC 대만 리저널에 참여하고 받은 에코백을 보며 슬퍼하고 있다. 원래 에코백에는 \texttt{ICPC} 네 글자가 멋지게 인쇄되어 있었지만, 몇 글자가 떨어져 나가고 문자열 $S$만 남았기 때문이다.
+
+슬퍼하는 민성이를 위해, 창민이는 지난 SCON 운영진이 남겨 둔 문자 스티커 $T$의 일부를 사용해 잃어버린 글자를 채워 가방에 다시 \texttt{ICPC} 문자열을 만들어 주려 한다. 
+
+문자열 $S$와 $T$가 주어졌을 때, 창민이가 민성이의 가방에 \texttt{ICPC} 문자열을 복원할 수 있는지 판별하라.
+
+\InputFile
+
+첫째 줄에 가방에 남아 있는 문자열 $S$의 길이를 나타내는 정수 $N$이 주어진다.
+
+둘째 줄에 길이가 $N$인 문자열 $S$가 주어진다.
+
+셋째 줄에 문자 스티커 $T$의 길이를 나타내는 정수 $M$이 주어진다.
+
+넷째 줄에 길이가 $M$인 문자열 $T$가 주어진다.
+
+\OutputFile
+
+$T$에 포함된 스티커를 사용하여 \texttt{ICPC}를 복원할 수 있으면 \texttt{m4us happy}를, 그렇지 않으면 \texttt{m4us sad}를 출력한다.
+
+\Constraints
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item $1 \le N \le 4$
+    \item $1 \le M \le 100$
+    \item $S$는 \texttt{I}, \texttt{C}, \texttt{P}로만 구성되어 있다.
+    \item $S$는 \texttt{ICPC}의 부분 수열(subsequence) 이다. 즉, $S$는 \texttt{ICPC}에서 순서를 유지한 채 일부 문자가 사라진 문자열이다.
+    \item $T$는 알파벳 대문자로만 구성되어 있다.
+    \item $T$에 같은 알파벳이 여러 번 등장할 수 있으며, 등장한 횟수 만큼 해당 알파벳의 스티커를 사용할 수 있다.
+\end{itemize}
+
+% ----------
+\Example
+
+% 테케 설명이 불필요한 경우 아래 example으로 설명 없는 버전으로 수정
+% \begin{example}
+%     \exmpfile{./example/01.in.txt}{./example/01.out.txt}%
+%     \exmpfile{./example/02.in.txt}{./example/02.out.txt}%
+% \end{example}
+
+\begin{examplethree}
+    \exmpfile{./example/01.in.txt}{./example/01.out.txt}{\small $S$ 문자열인 \texttt{CPC}에서 \texttt{ICPC}를 만들려면 \texttt{I}가 하나 필요하지만, $T$ 문자열인 \texttt{ABC}에는 \texttt{I}가 없으므로 \texttt{m4us sad}를 출력한다.}%
+    \exmpfile{./example/02.in.txt}{./example/02.out.txt}{\small $S$ 문자열인 \texttt{IC}에서 \texttt{ICPC}를 만들려면 \texttt{P}와 \texttt{C}가 하나씩 더 필요한 상태이다. $T$ 문자열인 \texttt{CPISTOOHARD}에는 \texttt{P}와 \texttt{C}가 각각 1개 이상 존재하므로 \texttt{m4us happy}를 출력한다.}%
+\end{examplethree}
+
+{\beforeproblemsectioncaption\noindent\bf\problemsectionfont
+\textsf{Hints}}\nopagebreak\par\afterproblemsectioncaption
+
+C/C++ 에서 문자열을 저장하기 위해 \texttt{char} 배열을 사용하는 경우, 문자열의 끝을 나타내는 널 문자(\texttt{\textbackslash 0})를 저장할 공간이 추가로 필요하다. 예를 들어 길이가 100인 문자열을 저장하려면 배열의 크기를 101 이상으로 선언해야 한다.
+
+% -------
+\Notes
+
+실제로 창민이는 지문과 다르게 민성이를 놀렸고, 그 때문인지 창민이는 2026 ICPC Asia Pacific Championship에 참가하고 받은 가방에 붙어있던 스티커가 떨어졌다. 
+
+% 예제 1의 경우: $S$ 문자열인 \texttt{CPC}에서 \texttt{ICPC}를 만들려면 \texttt{I}가 하나 필요하지만, $T$ 문자열인 \texttt{ABC}에는 \texttt{I}가 없으므로 \texttt{m4us sad}를 출력한다.
+
+% 예제 2의 경우: $S$ 문자열인 \texttt{IC}에서 \texttt{ICPC}를 만들려면 \texttt{P}와 \texttt{C}가 하나씩 더 필요한 상태이다. $T$ 문자열인 \texttt{CPISTOOHARD}에는 \texttt{P}와 \texttt{C}가 각각 1개 이상 존재하므로 \texttt{m4us happy}를 출력한다.
+
+\end{problem}
