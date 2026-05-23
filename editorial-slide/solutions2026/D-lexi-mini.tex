@@ -1,0 +1,51 @@
+\def\probno{D}
+\def\probtitle{사전순 최소}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{greedy, string}\\
+        출제진 의도 -- \textbf{\color{acsilver}Medium}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{65535}, 12분
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 연산은 같은 문자로 이루어진 연속 구간에만 적용할 수 있습니다.
+        \item 따라서 문자열을 같은 문자의 maximal run으로 나누어 생각합니다.
+        \item 예를 들어 \texttt{aabbba}는
+        \[
+            \texttt{aa} \mid \texttt{bbb} \mid \texttt{a}
+        \]
+        로 나눌 수 있습니다.
+        \item 각 run은 길이를 $1$ 이상 원래 길이 이하로 줄일 수 있습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 현재 run의 문자를 $c$, 다음 run의 문자를 $d$라고 합시다.
+        \item 만약 $c < d$라면, $c$를 더 많이 남기는 것이 사전순으로 유리합니다.
+        \item 따라서 이 경우 현재 run은 전부 남깁니다.
+        \item 만약 $c > d$라면, 더 작은 문자 $d$를 빨리 나오게 하는 것이 유리합니다.
+        \item 따라서 이 경우 현재 run은 하나만 남깁니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 마지막 run 뒤에는 비교할 다음 문자가 없습니다.
+        \item 같은 접두사를 가진다면 더 짧은 문자열이 사전순으로 앞섭니다.
+        \item 따라서 마지막 run은 하나만 남깁니다.
+        \item 각 run을 한 번씩 보며 위 규칙대로 출력하면 됩니다.
+        \item 시간복잡도는 $O(N)$입니다.
+    \end{itemize}
+\end{frame}

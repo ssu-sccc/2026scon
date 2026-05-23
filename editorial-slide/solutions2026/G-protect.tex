@@ -1,0 +1,56 @@
+\def\probno{G}
+\def\probtitle{보안}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{parametric search, greedy, priority queue}\\
+        출제진 의도 -- \textbf{\color{acgold} Hard}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{65535}, 40분
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 신뢰도 $T$를 고정하면, 각 요청은 정상/위험으로 결정됩니다.
+        \item 정상 요청은 \texttt{credit}을 $1$ 증가시키고, 위험 요청은 $1$ 감소시킵니다.
+        \item \texttt{credit}이 음수가 되는 순간마다, 이전까지의 위험 요청 중 하나를 패치해야 합니다.
+        \item 패치한 위험 요청은 $-1$이 아니라 $+1$이 되므로 \texttt{credit}이 $2$ 증가합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $T$를 고정했을 때 위험 요청 $i$의 패치 비용은 $T-A_i$입니다.
+        \item 앞에서부터 요청을 처리하며 위험 요청의 비용을 우선순위 큐에 넣습니다.
+        \item \texttt{credit}이 음수가 되면, 지금까지 본 위험 요청 중 비용이 가장 작은 것을 패치합니다.
+        \item 이렇게 해야 같은 횟수의 패치로 총 비용을 최소화할 수 있습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 위 그리디로 필요한 최소 패치 비용을 계산할 수 있습니다.
+        \item 그 비용이 $B$ 이하라면 신뢰도 $T$는 가능합니다.
+        \item $T$가 커질수록 위험 요청이 늘고, 패치 비용도 증가하므로 가능 여부는 단조성을 가집니다.
+        \item 따라서 $T$에 대해 이분 탐색합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 한 번의 가능성 판정은 우선순위 큐를 사용해 $O(N \log N)$입니다.
+        \item 신뢰도 $T$는 $1$부터 $10^9+B$ 정도까지 이분 탐색하면 충분합니다.
+        \item 전체 시간복잡도는
+        \[
+            O(N \log N \log V)
+        \]
+        입니다.
+    \end{itemize}
+\end{frame}

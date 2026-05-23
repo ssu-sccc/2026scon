@@ -1,0 +1,83 @@
+\def\probno{K}
+\def\probtitle{XOR 팰린드롬}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame} % No title at first slide
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{dp\_bitfield}\\
+        출제진 의도 -- \textbf{\color{acplatinum} Challenging}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{N/A}, N/A분
+        \item 문제 아이디어: 최도현
+        \item 문제 작업: 최도현
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $M$의 크기가 작으므로, 비트마스킹을 이용한 동적 계획법으로 해결할 수 있을지 확인해봅시다.
+        \item $dp[i][mask]$를 `$T_1$부터 $T_i$까지의 문자열을 적절히 선택하여 XOR한 결과 문자열이 $mask$가 되는 경우의 수'라고 정의하면 다음과 같은 점화식을 세울 수 있습니다.
+        \item $dp[i][mask] = dp[i-1][mask] + dp[i-1][mask \oplus T_i]$
+        \item 정답은 $dp[N]$에서 팰린드롬인 모든 $mask$의 경우의 수를 합한 값이 됩니다. 
+        \item 이 방법은 $O(NM + N \cdot 2^{M})$의 시간이 걸려 시간 초과가 발생합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 팰린드롬 이진 문자열이 가지는 특징을 생각해 봅시다.
+        \item XOR 연산으로 $j$번째 비트와 $(M-1-j)$번째 비트를 같게 만들기 위해서는 $j$번째 비트에 사용된 1의 개수와 $(M-1-j)$번째 비트에 사용된 $1$의 개수를 더했을 때 짝수가 나오면 됩니다.
+        \item 즉, 두 비트를 모두 들고 있을 필요없이 $j$번째 비트와 $(M-1-j)$번째 비트를 XOR한 비트만 가지고 있으면 됩니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $T_i$를 반으로 접어 서로 대응되는 비트끼리 XOR한 길이 $\lfloor M/2 \rfloor$의 새로운 이진 문자열 $F_i$로 변환합니다.
+        \item $M$이 홀수일 경우 정가운데 비트는 팰린드롬 여부에 영향을 주지 않으므로 무시해도 됩니다.
+        \item 기존 점화식에서 $T_i$ 대신 $F_i$를 사용하면 됩니다.
+        \item $dp[i][mask] = dp[i-1][mask] + dp[i-1][mask \oplus F_i]$
+        \item 모든 팰린드롬 이진 문자열은 반으로 접으면 모든 비트가 $0$인 문자열이 되므로, 정답은 $dp[N][0]$이 됩니다. 
+        \item 이때, 공집합은 정답에서 제외해야 합니다.
+        \item 시간 복잡도는 $O(NM + N \cdot 2^{\lfloor M/2 \rfloor})$가 되어 주어진 시간 내에 해결할 수 있습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $N$이 $2^{\lfloor M/2 \rfloor}$보다 큰 경우에는 더 빠르게 해결할 수 있는 방법이 존재합니다.
+        \item $F_i$의 길이는 $\lfloor M/2 \rfloor$이므로, 나올 수 있는 $F_i$의 가짓수는 최대 $2^{\lfloor M/2 \rfloor}$개입니다.
+        \item $mask_1$이 등장한 횟수를 $c\ (c \ge 1)$라고 합시다.
+        \item 임의의 상태 $mask_2$에 대해, $mask_1$을 짝수 번 선택하여 XOR하면 기존의 $mask_2$가 되고, 홀수 번 선택하면 $mask_1 \oplus mask_2$가 됩니다.
+        \item 이항 계수의 성질에 의해 $c$개 중 짝수 개를 고르는 경우의 수와 홀수 개를 고르는 경우의 수는 모두 $2^{c-1}$임을 이용하여 $dp$를 갱신할 수 있습니다.
+        \item 시간복잡도는 $O(NM + 2^{M})$입니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{ - XOR basis}}
+    \begin{itemize}
+        \item 비트끼리의 XOR 연산은 $\mathbb{Z}_2$ 에서의 덧셈으로 생각할 수 있습니다.
+        \item 이진 문자열을 각 성분이 $\mathbb{Z}_2$의 원소인 벡터라고 생각하면, 이진 문자열의 XOR은 벡터 덧셈에 대응됩니다.
+        \item 따라서 각 벡터가 $\mathbb{Z}_2^{\lfloor M/2 \rfloor}$인 벡터 공간(vector space)를 생각해 봅시다.
+        \item $\mathbb{Z}_2^{\lfloor M/2 \rfloor}$의 벡터 $F_1, F_2, \cdots, F_N$이 주어지면, 합이 0이 되는 공집합이 아닌 부분집합의 수를 구해야 합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{ - XOR basis}}
+    \begin{itemize}
+        \item 기저(basis) $B = \lbrace F_{i_1}, F_{i_2}, \cdots, F_{i_r} \rbrace$을 생각합시다.
+        \item 벡터 공간의 기저는 선형 독립이면서 공간을 생성(span)하는 벡터들의 집합입니다.
+        \item 기저에 속하지 않는 $N-r$개의 벡터는 모두 $B$의 원소들의 XOR로 유일하게 표현됩니다.
+        \item 합이 0인 부분집합은 다음과 같이 두 단계에 걸쳐 만들 수 있습니다.
+        \begin{enumerate}
+            \item 기저에 속하지 않는 $N-r$개의 벡터를 자유롭게 선택
+            \item 1단계에서 선택한 벡터의 합을 $v$라고 하면, $v \in \text{span}(B)$ 이므로 합이 $v$인 $B' \subseteq B$를 유일하게 결정 가능
+        \end{enumerate}
+        \item 따라서 1단계에서 선택 가능한 모든 $2^{N-r}$가지 선택이 하나의 부분집합을 만들 수 있습니다.
+        \item 따라서 합이 0인 부분집합의 수는 $2^{N-r}$이고, 공집합을 제외한 답은 $2^{N-r}-1$입니다.
+        \item 기저의 크기 $r$은 가우스 소거법 등을 이용해 구할 수 있습니다.
+    \end{itemize}
+\end{frame}

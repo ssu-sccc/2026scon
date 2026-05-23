@@ -1,0 +1,96 @@
+\def\probno{PB}
+\def\probtitle{개성있는 구간}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{constructive, number theory}\\
+        출제진 의도 -- \textbf{\color{acplatinum}Challenging}
+    }
+    \begin{itemize}
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $N < p \le 2N$인 소수 $p$를 하나 잡습니다.
+        \item Prefix sum을 다음과 같이 정의합니다.
+        \[
+            S_i = 2pi + (i^2 \bmod p)
+        \]
+        \item 이후
+        \[
+            A_i = S_i - S_{i-1}
+        \]
+        로 수열 $A$를 구성합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 구간 $[L,R]$의 합은
+        \[
+            S_R - S_{L-1}
+        \]
+        입니다.
+        \item 길이가 $d$인 구간 $[L,L+d-1]$의 합은
+        \[
+            2pd + ((L+d-1)^2 \bmod p) - ((L-1)^2 \bmod p)
+        \]
+        입니다.
+        \item 첫 항 $2pd$는 구간의 길이 $d$만으로 결정됩니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 서로 길이가 다른 두 구간을 생각합니다.
+        \item 길이 차이가 있다면 $2pd$ 항의 차이는 적어도 $2p$입니다.
+        \item 나머지 항의 차이는 항상 $-(p-1)$ 이상 $p-1$ 이하입니다.
+        \item 따라서 길이가 다른 두 구간은 절대 같은 합을 가질 수 없습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 이제 길이가 같은 두 구간만 보면 됩니다.
+        \item 길이를 $d$라 하고, 시작점을 각각 $x,y$라고 합시다.
+        \item 두 구간의 합이 같다면
+        \[
+            (x+d-1)^2 - (x-1)^2 \equiv (y+d-1)^2 - (y-1)^2 \pmod p
+        \]
+        입니다.
+        \item 이를 정리하면
+        \[
+            2d(x-y) \equiv 0 \pmod p
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item $1 \le d \le N < p$이므로 $d \not\equiv 0 \pmod p$입니다.
+        \item 또한 $p$는 소수이므로 $2d$는 $\bmod p$에서 역원을 가집니다.
+        \item 따라서
+        \[
+            x \equiv y \pmod p
+        \]
+        입니다.
+        \item $1 \le x,y \le N < p$이므로 실제로 $x=y$입니다.
+        \item 즉, 길이가 같은 서로 다른 구간도 같은 합을 가질 수 없습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 길이가 다르면 $2pd$ 항 때문에 구간 합이 다릅니다.
+        \item 길이가 같으면 $(i^2 \bmod p)$ 항 때문에 시작점이 같아야 합니다.
+        \item 따라서 모든 연속 부분수열의 합은 서로 다릅니다.
+        \item $A_i = S_i - S_{i-1} = 2p + (2i \bmod p)$ 이므로 $A_i < 3p$입니다. 또한 $p \le 2N$이므로 $A_i < 6N$을 만족합니다.
+        \item 시간복잡도는 소수 탐색 포함 $O(N\sqrt N)$ 또는 에라토스테네스로 $O(N\log\log N)$입니다.
+    \end{itemize}
+\end{frame}

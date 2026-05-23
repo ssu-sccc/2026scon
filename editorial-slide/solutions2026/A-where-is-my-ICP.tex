@@ -1,0 +1,30 @@
+\def\probno{A}
+\def\probtitle{Where is my ``ICP"}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame} % No title at first slide
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{string}\\
+        출제진 의도 -- \textbf{\color{acbronze}Easy}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{동의를 거부할 경우 2026 SCON 참여가 불가합니다}, 3분
+        \item 문제 아이디어: 이창민
+        \item 문제 작업: 이창민
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 문자열 $S$와 $T$에 포함된 알파벳의 개수가 \texttt{ICPC}를 구성하기에 충분한지 판단하는 문제입니다.
+
+        % \item 구성해야 할 문자열 "ICPC"의 문자 구성(`I`: 1개, `C`: 2개, `P`: 1개)을 기준치로 설정합니다.
+        % \item 가방에 남은 문자열 $S$를 순회하며 해당 문자의 필요 개수를 줄입니다.
+        % \item 스티커 문자열 $T$를 순회하며 추가로 보충 가능한 문자의 필요 개수를 줄입니다.
+        % \item 마지막으로 문자열 "ICPC"를 이루는 각 문자의 필요 개수가 모두 $0$ 이하가 되었다면 `m4us happy`를, 하나라도 양수($>0$)로 남아있다면  `m4us sad`를 출력합니다.
+        
+        \item 문자열 길이에 비례하는 선형 시간 내에 해결 가능하며, 시간 복잡도는 $O(|S| + |T|)$ 입니다.
+    \end{itemize}
+\end{frame}

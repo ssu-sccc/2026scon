@@ -1,0 +1,164 @@
+\include{header}
+\usetikzlibrary{arrows.meta,matrix,decorations.pathreplacing}
+
+\title{2026 SCON}
+\subtitle{}
+\author{Official Solutions}
+\date{2026년 5월 23일}
+
+\begin{document}
+    \setcounter{framenumber}{-1}
+    \frame{\titlepage}
+
+    \begin{frame} %
+        \textbf{주최} %
+        \begin{itemize}
+            \item 숭실대학교 IT대학
+        \end{itemize}
+        \vspace{3mm}
+        \textbf{주관} %
+        \begin{itemize}
+            \item 컴퓨터학부 문제해결 소모임 SCCC
+        \end{itemize}
+        \vspace{3mm}
+        \textbf{운영} %
+        \begin{itemize}
+            \item 조문성 \tabto{1.2cm} \texttt{jms020820} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 진민성 \tabto{1.2cm} \texttt{m4ushold} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학과}
+            \item 나정휘 \tabto{1.2cm} \texttt{jhnah917} \tabto{8cm} {\color{gray} Quora}
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+        \textbf{출제} %
+        \begin{itemize}
+            \item 김민규 \tabto{1.2cm} \texttt{chorogchip} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 양성준 \tabto{1.2cm} \texttt{egod1537} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 이창민 \tabto{1.2cm} \texttt{chleee} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 조문성 \tabto{1.2cm} \texttt{jms020820} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 진민성 \tabto{1.2cm} \texttt{m4ushold} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학과}
+            \item 최도현 \tabto{1.2cm} \texttt{dohyonne} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}%
+        \textbf{검수} %
+        \begin{itemize}
+            \item 강혜아 \tabto{1.2cm} \texttt{cologne} \tabto{8cm} {\color{gray} NEXON KOREA}
+            \item 나정휘 \tabto{1.2cm} \texttt{jhnah917} \tabto{8cm} {\color{gray} Quora}
+            \item 윤교준 \tabto{1.2cm} \texttt{yclock} \tabto{8cm} {\color{gray} 서울대학교 컴퓨터공학부}
+        \end{itemize}
+        \vspace{3mm}
+        \textbf{포스터/문제지 표지/명찰 디자인} %
+        \begin{itemize}
+            \item 송은서 \tabto{1.2cm} \texttt{eunseo03} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}%
+        \textbf{대회 현장 스태프} %
+        \begin{itemize}
+            \item 강수민 \tabto{1.2cm} \texttt{} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 김종민 \tabto{1.2cm} \texttt{} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 안영주 \tabto{1.2cm} \texttt{} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 안준현 \tabto{1.2cm} \texttt{} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 정재영 \tabto{1.2cm} \texttt{} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+            \item 최명일 \tabto{1.2cm} \texttt{} \tabto{8cm} {\color{gray} 숭실대학교 컴퓨터학부}
+        \end{itemize}
+    \end{frame}
+    
+    % \begin{frame}{\textbf{Sponsors}}
+    %     \begin{center}
+    %         \includegraphics[width=0.36\linewidth]{images/logos/Hanbitmedia CI.png}\\
+    %         % \vspace{7mm}
+    %         \includegraphics[width=0.36\linewidth]{images/logos/chanel.png}\\
+    %         % \vspace{7mm}
+    %         \includegraphics[width=0.36\linewidth]{images/logos/startlink.png}
+    %     \end{center}
+    % \end{frame}
+
+    \begin{frame} % No title at first slide
+        \begin{center}
+            \begin{tabular}{cl|l|l|l}
+                \hline
+                문제 & & 의도한 난이도 & 문제 출제 & 문제 세팅 \\
+                \hline
+                \hline
+                \textbf{PA} & PS 포커 & \textbf{\color{acbronze} Easy} & 조문성 & 조문성 \\
+                \textbf{PB} & 개성있는 구간 & \textbf{\color{acplatinum} Challenging} & 조문성 & 조문성 \\
+                \textbf{PC} & SC ON 찾기 & \textbf{\color{acsilver} Medium} & 조문성 & 조문성 \\
+                
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{frame}
+
+    
+    \begin{frame} % No title at first slide
+        \begin{center}
+            \begin{tabular}{cl|l|l|l}
+                \hline
+                문제 & & 의도한 난이도 & 문제 출제 & 문제 세팅 \\
+                \hline
+                \hline
+                \textbf{A} & Where is my ``ICP" & \textbf{\color{acbronze} Easy} & 이창민 & 이창민 \\
+                \textbf{B} & 숭실대입구역 & \textbf{\color{acbronze} Easy} & 최도현 & 최도현 \\
+                \textbf{C} & 크림 먼저, 잼 먼저 & \textbf{\color{acbronze} Easy} & 김민규 & 김민규 \\
+                \textbf{D} & 사전순 최소 & \textbf{\color{acsilver} Medium} & 조문성 & 조문성 \\
+                \textbf{E} & 구간 뒤집기 & \textbf{\color{acsilver} Medium} & 조문성 & 조문성 \\
+                \textbf{F} & 덜 개성있는 구간 & \textbf{\color{acsilver} Medium} & 최도현 & 최도현 \\
+                \textbf{G} & 보안 & \textbf{\color{acgold} Hard} & 조문성 & 조문성 \\
+                \textbf{H} & 같게 만들기 & \textbf{\color{acgold} Hard} & 조문성 & 조문성 \\
+                \textbf{I} & 분탕의 신 & \textbf{\color{acgold} Hard} & 조문성 & 조문성 \\
+                \textbf{J} & SCON 마법진 & \textbf{\color{acgold} Hard} & 진민성 & 진민성 \\
+                \textbf{K} & XOR 팰린드롬 & \textbf{\color{acplatinum} Challenging} & 최도현 & 최도현 \\
+                \textbf{L} & 뱀 수열 & \textbf{\color{acplatinum} Challenging} & 양성준 & 양성준 \\
+                
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{frame}
+
+    \import{solutions2026/}{PA-pspoker.tex}
+    \import{solutions2026/}{PB-unique-range.tex}
+    \import{solutions2026/}{PC-SC-ON.tex}
+    \import{solutions2026/}{A-where-is-my-ICP.tex}
+    \import{solutions2026/}{B-station.tex}
+    \import{solutions2026/}{C-cream-jam.tex}
+    \import{solutions2026/}{D-lexi-mini.tex}
+    \import{solutions2026/}{E-flip.tex}
+    \import{solutions2026/}{F-unique.tex}
+    \import{solutions2026/}{G-protect.tex}
+    \import{solutions2026/}{H-same.tex}
+    \import{solutions2026/}{I-god.tex}
+    \import{solutions2026/}{J-scon-magic.tex}
+    \import{solutions2026/}{K-xor.tex}
+    \import{solutions2026/}{L-snake-seq.tex}
+        
+
+    % \begin{frame}{LLM 모델 테스트}
+    %     \begin{center}
+    %         \begin{tabular}{c|l|l|l|l|l|l}
+    %             문제 & GPT 4.1 & GPT 4.5 & Claude 3.7 & Claude 3.7 Rsn & Gemini 2.5 Pro & GPT o3 \\ \hline
+    %             A & \textcolor{red}{WA}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             B & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             C & \textcolor{red}{TLE} & \textcolor{red}{WA}  & \textcolor{acgreen}{AC}  & \textcolor{red}{TLE} & \textcolor{red}{TLE} & \textcolor{acgreen}{AC} \\ \hline
+    %             D & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             E & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             F & \textcolor{red}{WA}  & \textcolor{acgreen}{AC}  & \textcolor{red}{TLE} & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             G & \textcolor{red}{MLE} & \textcolor{red}{MLE} & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             H & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{red}{TLE} & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC}  & \textcolor{acgreen}{AC} \\ \hline
+    %             I & \textcolor{red}{WA}  & \textcolor{red}{WA}  & \textcolor{acgreen}{AC}  & \textcolor{red}{TLE} & \textcolor{red}{TLE} & \textcolor{acgreen}{AC} \\ \hline
+    %             J & \textcolor{red}{TLE} & \textcolor{red}{TLE} & \textcolor{red}{TLE} & \textcolor{red}{TLE} & \textcolor{red}{TLE} & \textcolor{acgreen}{AC} \\ \hline
+    %             총점 & 4 & 6 & 7 & 7 & 7 & 10
+    %         \end{tabular}
+    %     \end{center}
+    % \end{frame}
+    
+    \begin{frame} % No title
+        \begin{itemize}
+            \item 대회 문제의 모범 코드는 https://sccc.kr/scon/2026 에서 확인할 수 있습니다.
+            \item 감사합니다.
+        \end{itemize}
+    \end{frame}
+\end{document}

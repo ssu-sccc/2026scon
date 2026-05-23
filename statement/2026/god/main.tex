@@ -1,0 +1,116 @@
+\def\probtitle{분탕의 신}
+\def\probno{I} % 문제 번호
+\definecolor{timeoutcolor}{HTML}{E97A6E}
+
+\begin{problem}{\probtitle}{표준 입력(stdin)}{표준 출력(stdout)}{1 초}{1024 megabytes}
+
+이 문제는 인터랙티브 문제이다.
+
+숭실대학교 알고리즘 동아리 SCCC에는 전통적으로 내려오는 길이 $N$의 이진 수열 $A = [A_1, A_2, \dots, A_N]$ 족보 코드가 있다. 각 원소는 $0$ 또는 $1$이다.
+
+분탕의 신 문성이는 족보를 싫어해 SCCC 부원들이 족보 코드를 쉽게 알아내지 못하도록 수열을 계속 변경하는 분탕을 친다.
+
+당신의 목표는 채점기와 상호작용하여 문성이의 분탕을 이겨내 \textbf{현재 수열} $A$를 정확히 알아내는 것이다.
+
+당신은 채점기에게 최대 $1333$번까지 질문할 수 있다.
+한 번의 질문은 다음 형식으로 한다.
+\begin{center}
+\texttt{? } $i$
+\end{center}
+
+이 질문을 하면 채점기는 현재 수열의 $i$번째 원소 $A_i$의 값을 반환한다.
+
+하지만 문성이는 호락호락하지 않다.
+채점기는 \textbf{10번째, 20번째, 30번째, \dots} 질문에 답한 직후마다 현재 수열에 대해 다음 네 가지 연산 중 하나를 적용한다.
+\begin{itemize}[topsep=0pt,noitemsep] 
+    \item 아무 연산도 하지 않음
+    \item 전체 수열을 flip
+    \item 전체 수열을 reverse
+    \item 전체 수열을 flip한 뒤 reverse
+\end{itemize}
+
+flip과 reverse의 정의는 아래 노트를 참고하라.
+
+현재 수열을 정확히 알아냈다면, 다음 형식으로 답을 출력해야 한다.
+\begin{center}
+\texttt{! } $A_1$ $A_2$ $\dots$ $A_N$
+\end{center}
+
+이때 출력한 수열은 \textbf{출력하는 순간의 현재 수열}과 정확히 일치해야 한다.
+
+\newpage
+
+\Interaction
+
+상호작용이 시작되면 첫째 줄에 정수 $N$이 주어진다.
+
+그 후, 참가자는 최대 $1333$번까지 질문할 수 있다.
+
+질문은
+\begin{center}
+\texttt{? } $i$
+\end{center}
+형식으로 출력해야 하며, 끝에 개행을 추가해야 한다. 여기서 $i$는 $1 \le i \le N$을 만족하는 정수이다.
+
+올바른 질문을 출력하면 채점기는 현재 수열의 $i$번째 값인 $A_i$를 반환한다. 반환되는 값은 항상 $0$ 또는 $1$이다.
+
+참가자는 최종적으로
+\begin{center}
+\texttt{! } $A_1$ $A_2$ $\dots$ $A_N$
+\end{center}
+형식으로 답을 출력해야 한다.
+여기서 $A_1, A_2, \dots, A_N$은 반드시 공백으로 구분하여 출력해야 하며, 끝에 개행을 추가해야 한다. 
+즉, \texttt{! 0 1 0 1}과 같은 형식으로 출력해야 하며, \texttt{! 0101}처럼 붙여서 출력해서는 안 된다.
+
+출력한 수열은 \textbf{출력하는 순간의 현재 수열}과 정확히 일치해야 한다.
+
+질문 형식이 잘못되었거나, $i$가 범위를 벗어났거나, 질문 횟수 제한을 초과하는 등 참가자가 프로토콜을 어기면, 인터랙터는 \texttt{-1}을 출력한 뒤 즉시 종료한다.
+참가자는 \texttt{-1}을 입력받는 즉시 프로그램을 종료해야 한다.
+이 경우, \textcolor{wared}{\textbf{틀렸습니다}}를 받는다.
+
+최종 정답의 형식이 잘못되었거나, 출력한 수열이 현재 수열과 다르면 \textcolor{wared}{\textbf{틀렸습니다}}를 받는다.
+
+출력을 즉시 채점 프로그램에 전달하기 위해, 질문이나 정답을 출력한 뒤에는 반드시 개행을 출력하고 출력 버퍼를 비워야 한다.
+이를 지키지 않아 상호작용이 정상적으로 진행되지 않으면 \textcolor{violet}{\textbf{런타임 에러}}나 \textcolor{timeoutcolor}{\textbf{시간 초과}}와 같은 판정을 받을 수 있다.
+
+언어별로 출력 버퍼를 비우는 방법의 예시는 다음과 같다.
+
+\begin{itemize}[topsep=0pt,noitemsep] 
+    \item \texttt{C}: \texttt{fflush(stdout);}
+    \item \texttt{C++}: \texttt{std::cout.flush();}
+    \item \texttt{Java}: \texttt{System.out.flush();}
+    \item \texttt{Python}: \texttt{stdout.flush()}
+\end{itemize}
+
+정답을 출력한 뒤 프로그램은 즉시 종료해야 한다.
+
+이 문제의 인터랙터는 적응적이지 않다. 즉, 초기에 $A_1, A_2, \cdots, A_N$의 값은 정해져 있으며, 당신이 보내는 쿼리와 관계없이 미리 정해진 순서대로 수열을 변화시킨다.
+
+\newpage 
+
+\Constraints
+
+\begin{itemize}[topsep=0pt,noitemsep]
+    \item 주어지는 모든 수는 정수이다.
+    \item $1 \le N \le 1\,000$
+    \item $1 \le i \le N$인 모든 $i$에 대해 $A_i \in \{0,1\}$
+\end{itemize}
+
+\Example
+
+\begin{example}
+    \exmpfile{./example/01.in.txt}{./example/01.out.txt}%
+\end{example}
+
+\Notes
+
+\begin{itemize}[topsep=0pt,noitemsep] 
+    \item \texttt{flip}은 수열의 모든 원소를 뒤집는 연산이다. 즉, 각 $i$에 대해 현재 값 $A_i$를 $1 - A_i$로 바꾼다.
+    \item \texttt{reverse}는 수열의 순서를 뒤집는 연산이다. 즉, 연산 후의 수열 $B$는 각 $i$에 대해 $B_i = A_{N+1-i}$를 만족한다.
+    \item \texttt{flip} 후 \texttt{reverse}는 먼저 모든 원소를 뒤집은 뒤, 그 결과 수열의 순서를 뒤집는 연산이다. 즉, 연산 전 수열이 $A$이고 연산 후 수열이 $B$라면 각 $i$에 대해 $B_i = 1 - A_{N+1-i}$이다.
+    \item 채점기의 변형은 오직 $10$번째, $20$번째, $30$번째, $\dots$ 질문에 답한 직후에만 일어난다. 최종 답안 출력 \texttt{! } $A_1$ $A_2$ $\dots$ $A_N$은 질문 횟수에 포함되지 않는다. 예를 들어 $9$번째 질문까지 한 뒤 곧바로 정답을 출력한다면, 그 사이에 수열이 추가로 변하는 일은 없다.
+    \item 채점기가 어떤 연산을 적용했는지는 참가자에게 알려지지 않는다.
+    \item 최종적으로 출력해야 하는 것은 초기 수열이 아니라, 정답을 출력하는 시점의 현재 수열이다.
+\end{itemize}
+
+\end{problem}

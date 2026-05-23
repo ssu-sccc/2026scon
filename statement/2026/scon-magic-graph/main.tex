@@ -1,0 +1,84 @@
+\def\probtitle{SCON 마법진}
+\def\probno{J} % 문제 번호 
+\begin{problem}{\probtitle}{표준 입력(stdin)}{표준 출력(stdout)}{1 초}{1024 megabytes} 
+올해도 어김없이 SCCC의 회장이 된 문성이는 스콘을 완벽하게 구워내기 위해 마법진을 연구하고 있다. 이 마법진은 $1$번부터 $N$번까지 번호가 매겨진 $N$개의 룬 문자와, 서로 다른 두 룬 문자를 연결하는 $M$개의 마나 회로로 구성되어 있다. 
+
+처음 마법진을 그렸을 때 모든 룬 문자의 마나는 0이다. 문성이는 맛있는 스콘을 완성하기 위해 마법진에 다음 두 가지 쿼리를 처리하며 상태를 기록해야 한다. 
+
+\begin{itemize}[topsep=0pt,noitemsep] 
+    \item $1~i~x$: $i$번 룬 문자에 마나를 주입하여, 해당 룬 문자의 마나 에너지를 $x$만큼 증가시킨다. 
+    \item $2~d$: 연결된 마나 회로의 수가 정확히 $d$개인 모든 룬 문자들을 활성화한다. 이후 활성화된 각 룬 문자와 마나 회로로 직접 연결된 룬 문자들의 마나 에너지 총합을 계산한다. 
+    \begin{itemize}[topsep=0pt,noitemsep] 
+        \item 하나의 룬 문자가 여러 개의 활성화된 룬 문자와 연결되었다면, 연결된 횟수만큼 중복해서 합산한다. 
+        \item 룬 문자의 활성화는 에너지를 계산하는 동안 일시적으로만 이루어지며, 계산이 끝난 직후 활성화되었던 룬 문자들은 다시 원래의 상태로 돌아간다. 
+    \end{itemize}
+\end{itemize} 
+
+\InputFile 
+첫째 줄에 룬 문자의 개수 $N$, 마나 회로의 개수 $M$, 쿼리의 개수 $Q$가 공백으로 구분되어 주어진다. 
+
+다음 $M$개의 줄에는 마나 회로가 연결하는 두 룬 문자의 번호 $u, v$가 공백으로 구분되어 주어진다.
+
+다음 $Q$개의 줄에는 쿼리가 $1~i~x$ 또는 $2~d$의 형태로 주어진다. 
+
+\OutputFile 
+$2$번 쿼리가 주어질 때마다, 조건에 맞춰 계산된 마나 에너지의 총합을 한 줄에 하나씩 출력한다.
+
+조건을 만족하는 룬 문자가 존재하지 않거나, 마나 회로로 연결된 룬 문자가 없어 합산할 마나가 없다면 $0$을 출력한다.
+
+\Constraints 
+\begin{itemize}[topsep=0pt,noitemsep] 
+    \item 주어지는 모든 수는 정수이다. 
+    \item $1 \le N, Q \le 100\,000$ 
+    \item $0 \le M \le \min(\frac{N(N-1)}{2}, 200\,000)$ 
+    \item $1 \le u, v \le N$ 
+    \item $u \ne v$
+    \item 같은 룬 문자 쌍을 연결하는 마나 회로가 여러 개 주어지지 않는다.
+    \item 모든 $1$번 쿼리에 대해 $1 \le i \le N$, $1 \le x \le 10^8$ 
+    \item 모든 $2$번 쿼리에 대해 $0 \le d \le N-1$
+    \item $2$번 쿼리는 반드시 1번 이상 주어진다.
+\end{itemize} 
+
+\Example 
+\begin{example} 
+    \exmpfile{./example/01.in.txt}{./example/01.out.txt}% 
+    \exmpfile{./example/02.in.txt}{./example/02.out.txt}%
+\end{example} 
+
+\newpage
+\Notes 
+\begin{center} 
+    \begin{tikzpicture}[scale=1.5, every node/.style={circle, draw, thick, minimum size=0.8cm}] 
+        % 노드 배치 
+        \node (v1) at (0,0) [label={below=5pt:회로 $3$개}] {1}; 
+        \node (v2) at (0,1.5) [label={above=5pt:회로 $1$개}] {2}; 
+        \node (v3) at (-1.5,-0.8) [label={left=5pt:회로 $1$개}] {3}; 
+        \node (v4) at (1.5,-0.8) [label={right=5pt:회로 $1$개}] {4}; 
+        
+        % 마나 회로 (간선) 연결 
+        \draw[thick] (v1) -- (v2); 
+        \draw[thick] (v1) -- (v3); 
+        \draw[thick] (v1) -- (v4); 
+    \end{tikzpicture}
+\end{center} 
+첫 번째 예제의 마법진에서 1번 룬에 연결된 마나 회로는 3개이며, 2, 3, 4번 룬에 연결된 마나 회로는 각각 1개이다. 각 쿼리에 따른 마나 에너지의 변화와 계산 과정은 다음과 같다. 
+
+\begin{itemize}[topsep=0pt,noitemsep] 
+    \item \texttt{1 2 10}: 2번 룬의 마나를 10만큼 증가시킨다. (현재 마나 상태: $X_1=0, X_2=10, X_3=0, X_4=0$) 
+    \item \texttt{1 3 20}: 3번 룬의 마나를 20만큼 증가시킨다. (현재 마나 상태: $X_1=0, X_2=10, X_3=20, X_4=0$) 
+    \item \texttt{2 3}: 연결된 마나 회로가 정확히 3개인 룬은 \textbf{1번}이다. 1번 룬과 직접 연결된 룬(2, 3, 4번)의 마나 총합을 계산한다. 
+    \begin{itemize}[topsep=0pt,noitemsep] 
+        \item 계산: $X_2 + X_3 + X_4 = 10 + 20 + 0 = 30$ 
+        \item 결과인 30을 출력한다. 
+    \end{itemize} 
+    \item \texttt{1 1 50}: 1번 룬의 마나를 50만큼 증가시킨다. (현재 마나 상태: $X_1=50, X_2=10, X_3=20, X_4=0$) 
+    \item \texttt{2 1}: 연결된 마나 회로가 정확히 1개인 룬은 \textbf{2, 3, 4번}이다. 활성화된 각 룬과 직접 연결된 룬의 마나를 모두 합산한다. 
+    \begin{itemize}[topsep=0pt,noitemsep] 
+        \item 2번 룬 활성화: 연결된 1번 룬의 마나($X_1=50$) 합산 
+        \item 3번 룬 활성화: 연결된 1번 룬의 마나($X_1=50$) 합산 
+        \item 4번 룬 활성화: 연결된 1번 룬의 마나($X_1=50$) 합산 
+        \item 계산: $50 + 50 + 50 = 150$ 
+        \item 결과인 150을 출력한다. 
+    \end{itemize}
+\end{itemize} 
+\end{problem}

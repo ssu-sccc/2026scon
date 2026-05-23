@@ -1,0 +1,58 @@
+\def\probno{I}
+\def\probtitle{분탕의 신}
+
+\section{\probno{}. \probtitle{}}
+
+\begin{frame}
+    \sectiontitle{\probno{}}{\probtitle{}}
+    \sectionmeta{
+        \texttt{interactive, ad-hoc}\\
+        출제진 의도 -- \textbf{\color{acgold} Hard}
+    }
+    \begin{itemize}
+        \item 처음 푼 팀: \textbf{세얼간이}, 88분
+        \item 문제 아이디어: 조문성
+        \item 문제 작업: 조문성
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 수열은 10번째 질문마다 다음 중 하나로 변합니다.
+        \[
+            \text{none},\quad \text{flip},\quad \text{reverse},\quad \text{flip+reverse}
+        \]
+        \item 따라서 현재까지 알아낸 값들이 뒤집혔는지, 반전되었는지를 추적해야 합니다.
+        \item 기본적으로 $A_i$와 $A_{N-i+1}$을 한 쌍으로 질문합니다.
+        \item 이렇게 하면 양쪽에서부터 수열을 채워 나갈 수 있습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 이미 알아낸 쌍 중에서 두 종류의 기준점을 잡습니다.
+        \item $A_i \ne A_{N-i+1}$인 쌍 하나를 \textbf{different pair}로 둡니다.
+        \item $A_j = A_{N-j+1}$인 쌍 하나를 \textbf{same pair}로 둡니다.
+        \item 10번째 질문마다 이 기준점들을 다시 질문합니다.
+        \item 응답 변화로 flip과 reverse가 일어났는지 판별할 수 있습니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item same pair는 reverse되어도 값이 서로 같으므로, flip 여부를 판별할 수 있습니다.
+        \item different pair는 flip 또는 reverse되면 양 끝 값이 서로 바뀝니다 하지만 둘 다 적용되면 바뀌지 않습니다.
+        \item 이를 통해 same pair, different pair의 변화 여부로 \text{flip 여부}, \text{reverse 여부}를 모두 알아낼 수 있습니다.
+        \item 판별한 변화에 맞춰 현재 저장한 수열을 갱신합니다.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\probno{}. \probtitle{}}
+    \begin{itemize}
+        \item 각 쌍을 알아내는 데 질문 2개가 필요합니다.
+        \item 각 쌍을 알아내는 데 질문 2개가 필요합니다.
+        \item 10번째 질문마다 보정 질문을 최대 2개 사용합니다. 즉 10번의 질문에 8개의 원소를 알아낼 수 있습니다.
+        \item 약 1250번의 질문으로 1000개의 원소를 알아낼 수 있습니다. 
+        \item 모든 값을 알아낸 뒤, 현재 상태로 보정한 수열을 출력합니다.
+    \end{itemize}
+\end{frame}
