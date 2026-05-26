@@ -4,8 +4,7 @@
 
 * 대회 홈페이지: [https://2026scon.live/domjudge](https://2026scon.live/domjudge)
 * 대회 결과: [2026 SCON 스코어보드](https://github.com/ssu-sccc/2026scon/blob/main/scoreboard/2026-scon-scoreboard.pdf)
-* 대회 문제 다시 풀어보기: [정올 2026 SCON Open Contest](https://jungol.co.kr/contest/4101)
-
+* 대회 문제 다시 풀어보기: [정올 2026 SCON](https://jungol.co.kr/problemset/612)
 ### 리포지토리 구조
 
 * `editorial-slide/`: 풀이 슬라이드 및 $\LaTeX$ 프로젝트
